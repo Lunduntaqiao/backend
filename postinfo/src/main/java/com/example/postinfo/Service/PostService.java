@@ -12,6 +12,7 @@ import com.example.postinfo.repository.PostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -53,5 +54,26 @@ public class PostService extends ServiceImpl<PostMapper, PostInfo> implements Po
         }
         return myResult;
     }
+
+    /**
+     * openfeign
+     */
+    public List<PostInfo> OpenFeignFindInfo(String noSelected, String postId){
+
+        QueryWrapper<PostInfo> queryWrapper = new QueryWrapper<>();
+
+        // delect columns
+        List<String> noSelectedList = Arrays.asList(noSelected.split(","));
+        if(!noSelected.isEmpty()){
+            queryWrapper.select(PostInfo.class, item ->!noSelectedList.contains(item.getColumn()));
+        }
+
+        Collection<String> collection = Arrays.asList(postId.split(","));
+        queryWrapper.in("post_id", collection);
+        List<PostInfo> postInfoList = postMapper.selectList(queryWrapper);
+
+        return postInfoList;
+    }
+
 
 }

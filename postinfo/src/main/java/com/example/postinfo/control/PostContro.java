@@ -34,4 +34,11 @@ public class PostContro {
                                               @RequestParam(name = "postId",required = false) String postId ){
         return postService.findPostInfo(pageNum, pageSize,noSelected, postId);
     }
+
+
+    @PostMapping("/OpenFeignFindInfo")
+    public List<PostInfo> OpenFeignFindInfo(@RequestParam(name = "noSelected",required = false) String noSelected,
+                                       @RequestParam(name = "postId",required = false) String postId ){
+        return postService.OpenFeignFindInfo(noSelected, postId);
+    }
 }

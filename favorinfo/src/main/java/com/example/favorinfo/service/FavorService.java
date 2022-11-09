@@ -3,9 +3,11 @@ package com.example.favorinfo.service;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.favorinfo.OpenFeign.PostFeign;
 import com.example.favorinfo.OpenFeign.UserFeign;
 import com.example.favorinfo.common.FavorReturnInfo;
 import com.example.favorinfo.common.MyResult;
+import com.example.favorinfo.common.PostInfo;
 import com.example.favorinfo.dao.FavorInfo;
 import com.example.favorinfo.mapper.FavorMapper;
 import com.example.favorinfo.repository.FavorRepo;
@@ -26,15 +28,33 @@ public class FavorService extends ServiceImpl<FavorMapper, FavorInfo> implements
     private UserFeign userFeign;
 
     @Autowired
+    private PostFeign postFeign;
+
+    @Autowired
     private FavorMapper favorMapper;
 
 
     public MyResult<List<FavorReturnInfo>> findFavorInfo(int pageNum, int pageSize, int userId){
         MyResult<List<FavorReturnInfo>> myResult = new MyResult<>();
-        String userName  = userFeign.FindUserName(userId);
+        List<FavorReturnInfo> favorReturnInfoList = new ArrayList<>();
 
 
+        FavorInfo favorInfo = favorMapper.selectAllByUserId(userId);
+        List<PostInfo> postInfoList = postFeign.OpenFeignFindInfo("post_info", favorInfo.getPostId());
+        for(int i = 0; i < postInfoList.size();i++){
+            FavorReturnInfo favorReturnInfo = new FavorReturnInfo();
+            favorReturnInfo.setPostId(postInfoList.get(i).getPostId());
 
+            String posterName  = userFeign.FindUserName(postInfoList.get(i).getUserId());
+            favorReturnInfo.setPosterName(posterName);
+
+            favorReturnInfo.setPostTitle(postInfoList.get(i).getPostTitle());
+            favorReturnInfo.setCreateTime(postInfoList.get(i).getPostTime());
+            favorReturnInfoList.add(favorReturnInfo);
+        }
+        List<FavorReturnInfo> sendFavorInfo = favorReturnInfoList.subList(pageNum-1, pageNum-1+pageSize);
+        myResult.setCode(200);
+        myResult.setData(sendFavorInfo);
         return myResult;
     }
 
