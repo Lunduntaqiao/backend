@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/backend.iml" filepath="$PROJECT_DIR$/backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/clouddubboapi/clouddubboapi.iml" filepath="$PROJECT_DIR$/clouddubboapi/clouddubboapi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/favorinfo/favorinfo.iml" filepath="$PROJECT_DIR$/favorinfo/favorinfo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/postinfo/postinfo.iml" filepath="$PROJECT_DIR$/postinfo/postinfo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/userinfo/userinfo.iml" filepath="$PROJECT_DIR$/userinfo/userinfo.iml" />
+    </modules>
+  </component>
+</project>
