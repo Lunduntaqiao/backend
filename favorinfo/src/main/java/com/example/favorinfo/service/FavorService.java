@@ -33,6 +33,8 @@ public class FavorService extends ServiceImpl<FavorMapper, FavorInfo> implements
         MyResult<List<FavorReturnInfo>> myResult = new MyResult<>();
         String userName  = userFeign.FindUserName(userId);
 
+
+
         return myResult;
     }
 
