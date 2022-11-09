@@ -31,6 +31,11 @@ spring:
           predicates:
             - Path=/favor/**
 
+        - id: postinfo
+          uri: lb://postinfo
+          predicates:
+            - Path=/post/**
+
 #      globalcors: # 全局的跨域处理
 #        add-to-simple-url-handler-mapping: true # 因为ajax发起者会通过options请求来向服务器询问是否允许跨域，所以需要设置为true来解决options请求被拦截问题
 #        corsConfigurations:
