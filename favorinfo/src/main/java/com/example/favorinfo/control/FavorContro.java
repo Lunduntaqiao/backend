@@ -24,4 +24,10 @@ public class FavorContro {
         return favorService.findFavorInfo(pageNum, pageSize, userId);
     }
 
+    @PostMapping("/changeFavorites")
+    public MyResult<String> changeFavor(@RequestParam(name = "userId") int userId,
+                                        @RequestParam(name = "postId")  int postId){
+        return favorService.changeFavor(userId, postId);
+    }
+
 }

@@ -13,4 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface FavorMapper extends BaseMapper<FavorInfo> {
 
 
+    @Select("select * from favor_info where user_id = #{user_id}")
+    FavorInfo selectAllByUserId(@Param("user_id") int userId);
 }
