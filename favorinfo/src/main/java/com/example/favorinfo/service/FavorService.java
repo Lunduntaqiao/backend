@@ -14,7 +14,6 @@ import com.example.favorinfo.repository.FavorRepo;
 import com.google.common.base.Joiner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,20 +40,22 @@ public class FavorService extends ServiceImpl<FavorMapper, FavorInfo> implements
 
         FavorInfo favorInfo = favorMapper.selectAllByUserId(userId);
         List<PostInfo> postInfoList = postFeign.OpenFeignFindInfo("post_info", favorInfo.getPostId());
-        for(int i = 0; i < postInfoList.size();i++){
-            FavorReturnInfo favorReturnInfo = new FavorReturnInfo();
-            favorReturnInfo.setPostId(postInfoList.get(i).getPostId());
+        List<PostInfo> thegoalpostInfolist = postInfoList.subList((pageNum-1)*pageSize, pageNum*pageSize);
 
-            String posterName  = userFeign.FindUserName(postInfoList.get(i).getUserId());
+        for (PostInfo postInfo : thegoalpostInfolist) {
+            FavorReturnInfo favorReturnInfo = new FavorReturnInfo();
+            favorReturnInfo.setPostId(postInfo.getPostId());
+
+            String posterName = userFeign.FindUserName(postInfo.getUserId());
             favorReturnInfo.setPosterName(posterName);
 
-            favorReturnInfo.setPostTitle(postInfoList.get(i).getPostTitle());
-            favorReturnInfo.setCreateTime(postInfoList.get(i).getPostTime());
+            favorReturnInfo.setPostTitle(postInfo.getPostTitle());
+            favorReturnInfo.setCreateTime(postInfo.getPostTime());
             favorReturnInfoList.add(favorReturnInfo);
         }
-        List<FavorReturnInfo> sendFavorInfo = favorReturnInfoList.subList(pageNum-1, pageNum-1+pageSize);
+
         myResult.setCode(200);
-        myResult.setData(sendFavorInfo);
+        myResult.setData(favorReturnInfoList);
         return myResult;
     }
 
