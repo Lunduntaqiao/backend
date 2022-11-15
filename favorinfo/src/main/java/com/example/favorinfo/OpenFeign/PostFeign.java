@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/post")
 public interface PostFeign {
 
-    @PostMapping("/OpenFeignFindInfo")
+    @PostMapping("/openFeignFindInfo")
     public List<PostInfo> OpenFeignFindInfo(@RequestParam(name = "noSelected",required = false) String noSelected,
                                             @RequestParam(name = "postId",required = false) String postId );
 }

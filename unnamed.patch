@@ -1,0 +1,17 @@
+Index: postinfo/src/main/java/com/example/postinfo/Service/PostService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/postinfo/src/main/java/com/example/postinfo/Service/PostService.java b/postinfo/src/main/java/com/example/postinfo/Service/PostService.java
+--- a/postinfo/src/main/java/com/example/postinfo/Service/PostService.java	(revision 225c72e0e09dd2573f8252ea1955236700c0fd75)
++++ b/postinfo/src/main/java/com/example/postinfo/Service/PostService.java	(date 1667961340786)
+@@ -26,7 +26,7 @@
+         MyResult<List<PostInfo>> myResult = new MyResult<>();
+         QueryWrapper<PostInfo> queryWrapper = new QueryWrapper<>();
+ 
+-        // delect columns
++        // delect columnssssss
+         List<String> noSelectedList = Arrays.asList(noSelected.split(","));
+         if(!noSelected.isEmpty()){
+             queryWrapper.select(PostInfo.class, item ->!noSelectedList.contains(item.getColumn()));

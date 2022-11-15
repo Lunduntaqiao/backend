@@ -1,4 +1,4 @@
-package com.example.postinfo.dao;
+package com.example.postinfo.common;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -12,15 +12,12 @@ import java.util.Date;
 
 
 @Data
-@TableName(value = "post_info")
-public class PostInfo {
 
-    @TableId(value= "post_id", type = IdType.AUTO)
+public class SendPostInfo {
     private int postId;
-    private int userId;
+    private String author;
     private String postTitle;
-    @TableField(value = "post_info_path")
-    private String postInfoPath;
+    private String postInfo;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",shape = JsonFormat.Shape.STRING, timezone="GMT+8")
     private Date postTime;

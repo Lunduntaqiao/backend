@@ -20,4 +20,7 @@ public interface UserMapper extends BaseMapper<UserInfo> {
 
     @Select("select user_name from user_info where user_id = #{user_id}")
     String selcetUserNameById(@Param("user_id") int userId);
+
+    @Select("select user_id from user_info where user_name = #{user_name}")
+    int selcetUserIdByUserName(@Param("user_name") String user_name);
 }

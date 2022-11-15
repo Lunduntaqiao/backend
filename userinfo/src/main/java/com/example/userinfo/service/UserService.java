@@ -42,6 +42,11 @@ public class UserService extends ServiceImpl<UserMapper, UserInfo> implements Us
      */
     public MyResult<String> upload(String userName, MultipartFile file) throws IOException {
         MyResult<String> myResult = new MyResult<>();
+        // check folder is exists?
+        File folder = new File(Path);
+        if(!folder.exists()){
+            folder.mkdirs();
+        }
         if(file.isEmpty()){
             myResult.setCode(400);
             myResult.setMessage("Please select Photo");
@@ -168,5 +173,8 @@ public class UserService extends ServiceImpl<UserMapper, UserInfo> implements Us
     }
 
 
+    public int findUserId(String userName){
+        return userMapper.selcetUserIdByUserName(userName);
+    }
 
 }

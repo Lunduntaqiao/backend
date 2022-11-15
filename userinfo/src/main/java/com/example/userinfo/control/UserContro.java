@@ -62,4 +62,9 @@ public class UserContro {
     public String findUserName(@RequestParam(name = "userId") int userId){
         return userService.findUserName(userId);
     }
+
+    @PostMapping("/findUserId")
+    public int findUserId(@RequestParam(name = "userName") String userName){
+        return userService.findUserId(userName);
+    }
 }
