@@ -22,12 +22,12 @@ CREATE TABLE can301.favorites_info(
 
 DROP TABLE IF EXISTS can301.post_info;
 CREATE TABLE can301.post_info(
-    post_id     int auto_increment comment 'post_Id'
+       post_id    int auto_increment comment 'post_Id'
         primary key,
-    user_id     int          not null comment 'user_id',
+    user_id    int          not null comment 'user_id',
     post_title varchar(255) not null comment 'post_title',
-    post_info varchar(255) not null comment 'post_info',
-    post_time   datetime     not null comment 'post_time'
+    post_info_path  varchar(255) not null comment 'post_info_path',
+    post_time  datetime     not null comment 'post_time'
 )  COMMENT = '';
 
 
