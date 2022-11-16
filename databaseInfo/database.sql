@@ -7,7 +7,7 @@ CREATE TABLE can301.user_info(
     user_name      varchar(255) not null comment 'user_name',
     user_password  varchar(255) not null comment 'user_password',
     user_sex       varchar(255) null comment 'user_sex',
-    user_image     varchar(255) not null comment 'user_image',
+#     user_image     varchar(255) not null comment 'user_image',
     user_email     varchar(255) null comment 'user_email',
     user_phone     varchar(255) null comment 'user_phone',
     user_status    varchar(255)     null comment 'user_status'

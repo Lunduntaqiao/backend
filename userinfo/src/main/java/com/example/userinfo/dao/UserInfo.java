@@ -15,7 +15,7 @@ public class UserInfo {
     private String userName ;
     private String userPassword;
     private String userSex ;
-    private String userImage ;
+//    private String userImage ;
     private String userPhone ;
     private Integer userStatus ;
     private String userEmail;

@@ -40,9 +40,15 @@ public class FavorService extends ServiceImpl<FavorMapper, FavorInfo> implements
 
         FavorInfo favorInfo = favorMapper.selectAllByUserId(userId);
         List<PostInfo> postInfoList = postFeign.OpenFeignFindInfo("post_info", favorInfo.getPostId());
-        List<PostInfo> thegoalpostInfolist = postInfoList.subList((pageNum-1)*pageSize, pageNum*pageSize);
+        List<PostInfo> theGoalPostInfolist;
 
-        for (PostInfo postInfo : thegoalpostInfolist) {
+        if(postInfoList.size() < pageNum*pageSize){
+            theGoalPostInfolist = postInfoList.subList((pageNum-1)*pageSize, postInfoList.size());
+        }else{
+            theGoalPostInfolist = postInfoList.subList((pageNum-1)*pageSize, pageNum*pageSize);
+        }
+
+        for (PostInfo postInfo : theGoalPostInfolist) {
             FavorReturnInfo favorReturnInfo = new FavorReturnInfo();
             favorReturnInfo.setPostId(postInfo.getPostId());
 

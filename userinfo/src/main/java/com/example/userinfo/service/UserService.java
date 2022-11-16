@@ -76,9 +76,9 @@ public class UserService extends ServiceImpl<UserMapper, UserInfo> implements Us
      */
     public MyResult<String> register(UserInfo userInfo){
         MyResult<String> myResult = new MyResult<>();
-        if(userInfo.getUserImage().equals("")){
-            userInfo.setUserImage(DEFAULT_PATH);
-        }
+//        if(userInfo.getUserImage().isEmpty()){
+//            userInfo.setUserImage(DEFAULT_PATH);
+//        }
 
         // check username
         if(userMapper.selectAllByName(userInfo.getUserName()) != null){
@@ -141,6 +141,7 @@ public class UserService extends ServiceImpl<UserMapper, UserInfo> implements Us
         if(getUserInfo.getUserPassword().equals(md5passWord)){
             myResult.setCode(200);
             myResult.setMessage("Login successful");
+            myResult.setData(userInfo.getUserName());
             return myResult;
         }else{
             myResult.setCode(400);
