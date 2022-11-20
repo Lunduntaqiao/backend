@@ -45,7 +45,7 @@ public class UserContro {
     }
 
     @PostMapping("/login")
-    public MyResult<String> userLogin(@RequestBody UserInfo userInfo){
+    public MyResult<Integer> userLogin(@RequestBody UserInfo userInfo){
         return userService.userLogin(userInfo);
     }
 

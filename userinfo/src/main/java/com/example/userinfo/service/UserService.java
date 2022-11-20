@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import com.example.userinfo.repository.UserRepo;
 
+import java.util.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -127,8 +128,8 @@ public class UserService extends ServiceImpl<UserMapper, UserInfo> implements Us
      * @param userInfo
      * @return message
      */
-    public MyResult<String> userLogin(UserInfo userInfo){
-        MyResult<String> myResult = new MyResult<>();
+    public MyResult<Integer> userLogin(UserInfo userInfo){
+        MyResult<Integer> myResult = new MyResult<>();
         // check username
         UserInfo getUserInfo = userMapper.selectAllByName(userInfo.getUserName());
         if(getUserInfo == null){
@@ -141,7 +142,7 @@ public class UserService extends ServiceImpl<UserMapper, UserInfo> implements Us
         if(getUserInfo.getUserPassword().equals(md5passWord)){
             myResult.setCode(200);
             myResult.setMessage("Login successful");
-            myResult.setData(userInfo.getUserName());
+            myResult.setData(getUserInfo.getUserStatus());
             return myResult;
         }else{
             myResult.setCode(400);

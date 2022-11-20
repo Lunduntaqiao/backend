@@ -34,6 +34,8 @@
 		<spring-cloud.version>Hoxton.SR10</spring-cloud.version>
 		<mysql.version>5.1.47</mysql.version>
 		<mybatis.version>2.1.1</mybatis.version>
+		<commons.version>2.5</commons.version>
+		<mybatis-plus.version>3.3.1.tmp</mybatis-plus.version>
 	</properties>
 
 	<dependencyManagement>
@@ -64,6 +66,20 @@
 				<artifactId>mysql-connector-java</artifactId>
 				<version>${mysql.version}</version>
 			</dependency>
+
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<version>${mybatis-plus.version}</version>
+			</dependency>
+
+
 <!--&lt;!&ndash;			dubbo依赖&ndash;&gt;-->
 <!--			<dependency>-->
 <!--				<groupId>org.apache.dubbo</groupId>-->
